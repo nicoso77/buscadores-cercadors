@@ -1,0 +1,172 @@
+nav ul li.btngaleria { padding: 14px 0px; }
+
+.show { display: block; }
+
+.cleartext.show:hover, #btncercar {
+	cursor: pointer;
+}
+
+.cleartext.show { /**/
+	position: absolute;
+    top: 5px;
+    right: 36px;
+	height: 18px;
+    width: 18px;
+	background-position: -18px -74px;
+	margin-right: 4px;
+}
+
+#txtcercar1, #txtcercar2 { z-index: 10000; }
+
+#cercartext #txtcercar {
+	position: absolute;
+    right: 34px;
+    top: -2px; /* 0 / -4 */
+	margin: 0px;
+    padding: 6px;
+}
+#cercartext { margin-bottom: 0px; }
+
+.cleartext.show:hover, #btncercar {
+	cursor: pointer;
+}
+
+.cleartext.show {
+	position: absolute;
+    top: 5px;
+    right: 36px;
+	height: 18px;
+    width: 18px;
+	background-position: -18px -74px;
+	margin-right: 4px;
+}
+
+#btncercar, #btncercar2, .cleartext.show { 
+    background-image: url(../_img/icones-Social-Media-23071701.png);
+    background-repeat: no-repeat;
+}
+
+#btncercar.mostra, .escriure, #btncercar2 { background-position: -56px -93px; } /* -28px */
+#btncercar.amaga { background-position: -84px -93px; } /* -28px */
+#btncercar, #btncercar2 { cursor: pointer; }
+
+.btncerca {
+    border-left: thin solid #b4b4d7;
+}
+#boxcercadp {
+    width: 200px;
+    z-index: 10;
+    padding: 12px;
+    margin-right: 0px;
+    background-color: lightsteelblue;
+    border: solid thin lightslategrey;
+}
+#boxcercadp {
+    position: absolute;
+    right: 0px;
+}
+.hide {
+    display: none;
+}
+
+/*	LLISTA TERMS CERCA	*/
+#listxtcerca { display: flex; }
+.boxtxtcerca { flex-direction: row; width: auto; }
+
+.boxtxtcerca { 
+	padding: 8px 10px;
+	margin: 0px 8px;
+	border: solid thin #2E86C1;
+	border-radius: 4px;
+}
+
+.btntxtanca { 
+	font: bold 1em verdana, Sans-serif;
+    cursor: pointer;
+}
+/*	FIN LLISTA TERMS CERCA	*/
+
+
+
+/* DESPLGABLE CERCADOR */
+/* Cal copiar-los a nsuarez.com */
+form#cercartext2 { margin-bottom: 0px; }
+#boxcercadp { 
+    position: absolute; 
+    right: 0px;
+}
+#boxcercadp { 
+	width: 200px;
+    z-index: 10; 
+    padding: 12px;
+    margin-right: 0px;
+    background-color: lightsteelblue;
+    border: solid thin lightslategrey;
+}
+#cercartext2 input { background-color: white; }
+/* Cal copiar-los a nsuarez.com */
+.btncerca { border-left: thin solid #b4b4d7; } 
+/* .btncerca, #cercador2d { height: 54px; } */
+#cercador2d { height: 28px; }
+#btncercar2 { 
+	background-image: url("../_img/icones-Social-Media-23052102.png"); 
+	background-repeat: no-repeat;
+}
+#btncercar2 { background-position: -56px -28px; }
+#btncercar2 { overflow: hidden; }
+#btncercar2 {
+    cursor: pointer; 
+    width: 28px;
+    height: 27px;
+    /* margin: 13px 4px 0px;  */
+    display: inline-block;
+}
+#btncercar2 {
+    overflow: hidden;
+}
+
+/* #cercador2d, #campcerca1, #campcerca2 { position: relative; } */
+#cercartext, #campcerca1, #campcerca2 { position: relative; }
+
+/* #cercartext2 input { margin: 8px 0px; } */
+.llistacerca {
+	color: hsl(0, 0%, 0%);
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	position: absolute;
+    top: 32px; /* 28 */
+    left: 0px;
+	width: 200px;
+	height: 400px;
+	max-height: 400px;
+	overflow: auto;
+	/* box-sizing: border-box; */
+	z-index: 20;
+}
+
+form, .ulmenu1 { margin-bottom: 20px; }
+form {font: normal 0.95em/1em helvetica, Arial, Sans-serif;}
+form input {
+	border-radius: 5px;
+    padding: 6px 2%;
+    margin: 4px 0px 6px 0px;
+}
+form#cercartext2 input {
+    width: 95%;
+}
+
+#cercartext2 .llistacerca>li {
+	background: #424242;
+	padding: 8px;
+	color: hsl(0, 0%, 100%);
+	border-bottom: dotted 1px hsl(0, 0%, 58%);
+}
+#cercartext2 .llistacerca>li:hover {
+	background: hsl(0, 0%, 36%);
+	cursor: pointer;
+}
+.listelems { padding: 6px 15px; } /**/
+/* .listelems span { padding-right: 6px; } */ /* margin-right: 8px; border-right: solid thin grey; */
+.listelems .fa { margin-left: 4px; color: darkred; }
+/* FI DESPLGABLE CERCADOR */
