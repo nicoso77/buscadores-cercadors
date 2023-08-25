@@ -9,32 +9,26 @@ BACKEND
 */
 class cercadors { // 
 	private $codi;
-	private $lang;
     private $galeria;
     private $desp;
     private $test;
 
-	/* public function __construct($arr) {
-		$this->resultats = parent::__construct($arr);
-	} */
-
+    // FRONT END
 	public function setCodi($arr = null) {
 		global $bd;
 
         $arrf['html'][0] = "
-        <!-- <form id='cercarform' name='cercarform'> -->
         <form id='cercartext' name='cercartext'>
 
             <input type='text' name='txtcercar' id='txtcercar' class='hide' value=''>
-            <input type='hidden' name='lang' id='lang' class='hide' value='0'>
             <span class='cleartext hide'></span>
 
-            <a id='btncercar' class='desactivat mostra'></a>
+            <a id='btncercar' class='desactivado mostra'></a>
         </form>";
 
         $arrf['html'][1] = "
         <div id='cercador2d' class=''>
-            <a id='btncercar2'></a> <!--  class='desactivat' -->
+            <a id='btncercar2'></a>
             <div id='boxcercadp' class='hide'>
                 <form id='cercartext2' name='cercartext2'>
                     <div id='campcerca1'>
@@ -47,14 +41,13 @@ class cercadors { //
 
                     <input type='hidden' name='discid' id='discid' value='0'>
                     <input type='hidden' name='toolid' id='toolid' value='0'>
-                    <input type='hidden' name='lang' id='lang' value='0'>
                 </form>
             </div>
             <div id='resultcerc'></div>
         </div>\n";
 
-        $arrf['cojs'] = "		<script src='_js/gestioCercador1Camp.js'></script>
-		<script src='_js/gestioCercador2Camp.js'></script>";
+        $arrf['cojs'] = "		<script src='_js/gestionBuscar1Camp.js'></script>
+		<script src='_js/gestionBuscar2Camp.js'></script>";
 
 		$this->codi = $arrf;
 	}
@@ -62,102 +55,95 @@ class cercadors { //
 	public function getCodi() {
 		return $this->codi;
     }
+    // FIN FRONT END
 
-    public function setResultat1($arr) {
+    /*
+    BACKEND - GENERACIÓN DE LA GALERIA
+    Creación del listado de elementos para la galería de imágenes, a partir de la búsqueda realizada tanto con el primer como segundo buscador.
+    */
+    public function setResultat($arr) {
         global $bd;
 
-        $this->lang = $arr['lang'];
-
-        // CERCADOR 2
-        // Si se utiliza el segundo buscador se añae este código a la query, que varía segun se envíe un valor coon el primer desplegble o con el primero y el segundo
-        // CERCADOR 2
+        // BUSCADOR 2
+        // Si se utiliza el segundo buscador se añaDe este código a la query, que varía segun se envíe un valor coon el primer desplegble o con el primero y el segundo
         $leftjoin1 = '';
         $leftjoin2 = '';
         if(isset($arr['des1'])) {
             $leftjoin1 = "
-            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imatges_cercador.id
+            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imgs_buscador.id
             LEFT JOIN disciplines_cercador ON disciplines_cercador.id = disciplinesImgs_cercador.disciplina ";
         }
         if(isset($arr['des2']) && $arr['des2'] != 0) {
             $leftjoin2 = "
-            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imatges_cercador.id
+            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imgs_buscador.id
             LEFT JOIN eines_cercador ON eines_cercador.id = einesImgs_cercador.tool";
         }
-        // FI CERCADOR 2
+        // FI BUSCADOR 2
 
         $text = '';
         $querytext = '';
         $despl = '';
-        // CERCADOR 2
+        // BUSCADOR 2
         if(isset($arr['des1'])) {
             if(isset($arr['des1'])) {
-                $despl .= " AND disciplines_cercador.id = ?"; //" AND ";
+                $despl .= " AND disciplines_cercador.id = ?";
             }
             if(isset($arr['des2']) && $arr['des2'] != 0) {
                 $despl .= " AND einesImgs_cercador.tool = ?";
             }
-            // FI CERCADOR 2
-        } elseif(array_key_exists('text', $arr) && $arr['text'] != '') { // CERCADOR 1
+            // BUSCADOR 1
+        } elseif(array_key_exists('text', $arr) && $arr['text'] != '') { 
             $text = "%" . strtolower($bd->real_escape_string($arr['text'])) . "%";
             $querytext =  " AND REPLACE(LOWER(`alt`), '<[^>]*>', '') LIKE ?";
         } else {
             $text = "''";
             $querytext = "AND `alt` != ?";
         }
-        // FI CERCADOR 1
+        // FI BUSCADOR 1
 
-        $query = "SELECT DISTINCT(imatges_cercador.`id`), `class`, `href`, `img`, `alt`, `peu` FROM `imatges_cercador` 
-        " . $leftjoin1 . " " . $leftjoin2 . " WHERE imatges_cercador.`visible` = 1 " . $querytext . $despl . " ORDER BY `ordre`";
-
-        //echo '--------- ' . $query . ' - ' . $arr['text'] . ' - ' . $arr['des1'] . ' - ' . $arr['des2'] . ' ------';
-
+        $query = "SELECT DISTINCT(imgs_buscador.`id`), `class`, `href`, `img`, `alt` FROM `imgs_buscador` 
+        " . $leftjoin1 . " " . $leftjoin2 . " WHERE imgs_buscador.`visible` = 1 " . $querytext . $despl . " ORDER BY `ordre`";
 		$cerca = $bd->stmt_init(); 
 		$cerca->prepare($query);
         
         // Introducimos el valor enviado mediante el formulario del primer buscador o del segundo
-        // CERCADOR 2
+        // BUSCADOR 2
         if(isset($arr['des1']) && $arr['des2'] == 0) {
 		    $cerca->bind_param("i", $arr['des1']) or die("Error: $cerca->errno : " . $cerca->error);
 		} elseif(isset($arr['des2']) && $arr['des2'] != 0) {
-		    $cerca->bind_param("ii", $arr['des1'], $arr['des2']) or die("Error: $cerca->errno : " . $cerca->error);  // FIN CERCADOR 2
-        } elseif(isset($arr['text'])) {
-            // CERCADOR 1
+		    $cerca->bind_param("ii", $arr['des1'], $arr['des2']) or die("Error: $cerca->errno : " . $cerca->error);  
+            // FIN BUSCADOR 2
+        } elseif(isset($arr['text'])) { // BUSCADOR 1
 		    $cerca->bind_param("s", $text) or die("Error: $cerca->errno : " . $cerca->error);
-            // FI CERCADOR 1
         } else {
-            // CERCADOR 1
 		    $cerca->bind_param("s", $arr['text']) or die("Error: $cerca->errno : " . $cerca->error);
-            // FI CERCADOR 1
-        }
+            
+        } // FI BUSCADOR 1
 
-        // CODI COMÚ
+        // CODIGO COMÚN
         $cerca->execute();
         $result = $cerca->get_result();
         $this->galeria = $result->fetch_all(MYSQLI_ASSOC);
 		$result->free();
-        // FI CODI COMÚ
+        // FI CODIGO COMÚN
 
         $this->test = $query;
     }
 
     public function getResultat() {
         $list = "";
-        foreach ($this->galeria as $value) { // $key =>
-			$title = str_replace( '"', "&quot;", $value['peu'] );
-			$title = str_replace( "'", "&#39;", $title );
+        foreach ($this->galeria as $value) { // 
 			$alt = str_replace( '"', "&quot;", $value['alt'] );
 			$alt = str_replace( "'", "&#39;", $alt );
 
-            $list .= "            <a class='fancybox-buttons imgarticle' title='" . $title . "' data-fancybox-group='button'>			
-                <span>			
-                    <img class='" . $value['class'] . "' src='_img/" . $value['img'] . "' alt='" . $alt . "'>					
-                </span>	
-            </a>";
+            $list .= "		
+            <div class='box01' title='" . $alt . "'>			
+                <img class='" . $value['class'] . "' src='_img/" . $value['img'] . "' alt='" . $alt . "'>					
+            </div>	";
         }
 
         if(count($this->galeria) == 0) { 
-            $noimgs = ($this->lang == 0) ? 'No hi ha imatges seleccionades' : 'No hay imágenes seleccionadas';
-            $list = "<p>" . $noimgs . "</p>"; 
+            $list = "<p>No hay imágenes seleccionadas</p>"; 
         }
 
         unset($this->galeria);
@@ -165,6 +151,10 @@ class cercadors { //
         return $list;
     }
 
+    /*
+    DESPLEGABLES BUSCADOR 2
+    Creación del listado de elementos para el primer o segundo desplegable del segundo buscador.
+    */
     public function setDesplegable($arr) {
         global $bd;
 
@@ -176,15 +166,15 @@ class cercadors { //
         if(isset($arr['des2']) && $arr['des2'] != '') {
             $txt2 = "%" . strtolower($bd->real_escape_string($arr['des2'])) . "%";
 
-            $query = "SELECT DISTINCT(eines_cercador.`id`), eines_cercador.`tool` AS nom FROM `imatges_cercador` 
+            $query = "SELECT DISTINCT(eines_cercador.`id`), eines_cercador.`tool` AS nom FROM `imgs_buscador` 
             
-            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imatges_cercador.id
+            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imgs_buscador.id
             LEFT JOIN disciplines_cercador ON disciplines_cercador.id = disciplinesImgs_cercador.disciplina 
 
-            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imatges_cercador.id
+            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imgs_buscador.id
             LEFT JOIN eines_cercador ON eines_cercador.id = einesImgs_cercador.tool
 
-            WHERE imatges_cercador.`visible` = 1 AND disciplines_cercador.disciplina LIKE ? AND eines_cercador.tool LIKE ? ORDER BY eines_cercador.tool ASC";
+            WHERE imgs_buscador.`visible` = 1 AND disciplines_cercador.disciplina LIKE ? AND eines_cercador.tool LIKE ? ORDER BY eines_cercador.tool ASC";
 
             $bpar = 2;
 
