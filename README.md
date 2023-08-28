@@ -8,24 +8,24 @@ En este repositorio encontraras una pagina simple de PHP con una galería de im�
 -El segundo buscador permite hacer la selección mediante uno o dos campos de texto de un formulario. Ambos inputs de texto generan un desplegable autocompletable a medida que se escribe. Se muestra  un desplegabe con un listado variable de opciones; estas se generan a partir de la busqueda del texto escrito en una de las tablas de la base de datso: 1er buscador -> disciplinas (disciplinas_buscador), 2º buscador -> herramientas (tools_buscador). Al hacer click en una de las opciones se actualiza la selección de imágenes en función de la opción elegida en cadda caso, aplicando un filtro. 
 
 Esta muestra de buscadores está compuesta por varios ficheros: 
--Este dcumento explicativo .md.
--7 archivos PHP, incluida la página principal "pagina-buscadores-cercadors.php".
--3 archivos CSS3 (en la carpeta _css).
--17 imágenes (en la carpeta _img).
--2 archivos Javascript.
--Un archivo SQL para la cración de la tabla con los datos asociados a las imágenes de la galería.
+  -Este dcumento explicativo .md.
+  -7 archivos PHP, incluida la página principal "pagina-buscadores-cercadors.php".
+  -3 archivos CSS3 (en la carpeta _css).
+  -17 imágenes (en la carpeta _img).
+  -2 archivos Javascript.
+  -Un archivo SQL para la cración de la tabla con los datos asociados a las imágenes de la galería.
 
 En todos los archivos de código hay algunos comentarios para facilitar la lectura de estos.
 
 Ambos buscadores pueden funcionar de manera independiente se elimina el código para el buscador descartado. Aunque hay que tener en cuenta que los siguientes archivos contienen código de ambos buscadores; si sólo se utiliza uno se puede identificar el cádigo o archivos del otro buscador y eliminarlos:
--classCercadors.php
--conexio.php
--pagina-cercadors.php
--resultadosbusqueda1.php
+  -classCercadors.php
+  -conexio.php
+  -pagina-cercadors.php
+  -resultadosbusqueda1.php
 
 Loa rchivos asociados a uno u otro buscador son:
-Buscador 1:
-gestionBuscar1Camp.js
-Buscador 2:
-resultadosbusqueda1.php
-gestionBuscar2Camp.js
+  -Buscador 1:
+  -gestionBuscar1Camp.js
+  -Buscador 2:
+  -resultadosbusqueda1.php
+  -gestionBuscar2Camp.js
