@@ -24,7 +24,7 @@ Ambos buscadores pueden funcionar de manera independiente si se elimina el códi
   - pagina-cercadors.php
   - resultadosbusqueda1.php
 
-Loa rchivos asociados a uno u otro buscador son:
+Los rchivos asociados a uno u otro buscador son:<br>
   Buscador 1: <br>
     - gestionBuscar1Camp.js<br>
   Buscador 2: <br>
