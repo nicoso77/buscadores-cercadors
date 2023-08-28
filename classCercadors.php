@@ -1,19 +1,12 @@
 <?php
-namespace ElMeuPortafoli\eines;
-/* include_once "classBDSelect.php";
-use \ElMeuPortafoli\BDSelect\selectBD; */
 
-/*
-FRONT
-BACKEND
-*/
 class cercadors { // 
 	private $codi;
     private $galeria;
     private $desp;
     private $test;
 
-    // FRONT END
+    // FRONT END pagina-buscadores-cercadors.php
 	public function setCodi($arr = null) {
 		global $bd;
 
@@ -70,13 +63,13 @@ class cercadors { //
         $leftjoin2 = '';
         if(isset($arr['des1'])) {
             $leftjoin1 = "
-            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imgs_buscador.id
-            LEFT JOIN disciplines_cercador ON disciplines_cercador.id = disciplinesImgs_cercador.disciplina ";
+            LEFT JOIN disciplinasImgs_buscador ON disciplinasImgs_buscador.id_imatge = imgs_buscador.id
+            LEFT JOIN disciplinas_buscador ON disciplinas_buscador.id = disciplinasImgs_buscador.disciplina ";
         }
         if(isset($arr['des2']) && $arr['des2'] != 0) {
             $leftjoin2 = "
-            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imgs_buscador.id
-            LEFT JOIN eines_cercador ON eines_cercador.id = einesImgs_cercador.tool";
+            LEFT JOIN toolsImgs_buscador ON toolsImgs_buscador.id_imatge = imgs_buscador.id
+            LEFT JOIN tools_buscador ON tools_buscador.id = toolsImgs_buscador.tool";
         }
         // FI BUSCADOR 2
 
@@ -86,10 +79,10 @@ class cercadors { //
         // BUSCADOR 2
         if(isset($arr['des1'])) {
             if(isset($arr['des1'])) {
-                $despl .= " AND disciplines_cercador.id = ?";
+                $despl .= " AND disciplinas_buscador.id = ?";
             }
             if(isset($arr['des2']) && $arr['des2'] != 0) {
-                $despl .= " AND einesImgs_cercador.tool = ?";
+                $despl .= " AND toolsImgs_buscador.tool = ?";
             }
             // BUSCADOR 1
         } elseif(array_key_exists('text', $arr) && $arr['text'] != '') { 
@@ -160,21 +153,21 @@ class cercadors { //
 
         $txt1 = "%" . strtolower($bd->real_escape_string($arr['des1'])) . "%";
         if(isset($arr['des1']) && $arr['des1'] != '') { //
-            $query = "SELECT `id`, `disciplina` AS nom FROM `disciplines_cercador` WHERE `disciplina` LIKE ? ORDER BY `nom`";
+            $query = "SELECT `id`, `disciplina` AS nom FROM `disciplinas_buscador` WHERE `disciplina` LIKE ? ORDER BY `nom`";
             $bpar = 1;
         }
         if(isset($arr['des2']) && $arr['des2'] != '') {
             $txt2 = "%" . strtolower($bd->real_escape_string($arr['des2'])) . "%";
 
-            $query = "SELECT DISTINCT(eines_cercador.`id`), eines_cercador.`tool` AS nom FROM `imgs_buscador` 
+            $query = "SELECT DISTINCT(tools_buscador.`id`), tools_buscador.`tool` AS nom FROM `imgs_buscador` 
             
-            LEFT JOIN disciplinesImgs_cercador ON disciplinesImgs_cercador.id_imatge = imgs_buscador.id
-            LEFT JOIN disciplines_cercador ON disciplines_cercador.id = disciplinesImgs_cercador.disciplina 
+            LEFT JOIN disciplinasImgs_buscador ON disciplinasImgs_buscador.id_imatge = imgs_buscador.id
+            LEFT JOIN disciplinas_buscador ON disciplinas_buscador.id = disciplinasImgs_buscador.disciplina 
 
-            LEFT JOIN einesImgs_cercador ON einesImgs_cercador.id_imatge = imgs_buscador.id
-            LEFT JOIN eines_cercador ON eines_cercador.id = einesImgs_cercador.tool
+            LEFT JOIN toolsImgs_buscador ON toolsImgs_buscador.id_imatge = imgs_buscador.id
+            LEFT JOIN tools_buscador ON tools_buscador.id = toolsImgs_buscador.tool
 
-            WHERE imgs_buscador.`visible` = 1 AND disciplines_cercador.disciplina LIKE ? AND eines_cercador.tool LIKE ? ORDER BY eines_cercador.tool ASC";
+            WHERE imgs_buscador.`visible` = 1 AND disciplinas_buscador.disciplina LIKE ? AND tools_buscador.tool LIKE ? ORDER BY tools_buscador.tool ASC";
 
             $bpar = 2;
 

@@ -1,7 +1,6 @@
 <?php
 include_once("conexio.php");
 include_once("classCercadors.php");
-use \ElMeuPortafoli\eines\cercadors;
 $objsearch = new cercadors();
 $objsearch->setCodi();
 $arrsearch = $objsearch->getCodi();
@@ -65,7 +64,7 @@ $list = $objsearch->getResultat();
 		<div class="clear"></div>
 
 		<footer>
-			<span class="llgProg left">Plantilla programada<br>amb els llenguatges</span>
+			<span class="llgProg left">Plantilla programada<br>con los lenguajes:</span>
 			<aside class="listIcones left">
 				<span>
 					<img src="_img/ico-html5-css-javascript-01.png" alt="HTML5, CSS3, JavaScript">	
