@@ -51,11 +51,6 @@ nav ul li.clear { margin: 0px; padding: 0px;}
 .langca a { background-position: 0px -93px; }
 .langes a { background-position: -28px -92px; }
 
-.listIcones img { height: 24px; }
-.listIcones span a, .icogal, .branca span, .icolang a { 
-	background-image: url("../_img/icones-Social-Media-23071701.png"); 
-	background-repeat: no-repeat;
-}
 .icolang a, #btncercar, .boxdia, .senalefavert { overflow: hidden; }
 .icolang a { width: 26px; }
 .icolang a, .icolang a img { height: 26px; }
@@ -64,8 +59,8 @@ nav ul li.clear { margin: 0px; padding: 0px;}
 .icolang a, #boxcookie a { border-radius: 16px; }
 .icolang a { display: inline-block; }
 
-.listIcones span a, .branca span, #btncercar { width: 28px; }
-.listIcones span, .listIcones span a, #btncercar, .branca span { height: 28px; }
+.listIcones span a, #btncercar { width: 28px; }
+.listIcones span, .listIcones span a, #btncercar { height: 28px; }
 #btncercar { display: inline-block; }
 
 .botons li.logo:hover {
@@ -96,8 +91,8 @@ ul {
 }
 ul.cercle li, .listidiomes, #btncercar { margin-left: 16px; }
 .imatge, img.right { margin: 0px 0px 1.4em 1.4em ; }
-.listIcones.right span, .listIcones span a, .branca span, #btncercar { width: 28px; }
-.listIcones.right span a, .icolang a, .branca span, #boxcookie a { border-radius: 16px; }
+.listIcones.right span, .listIcones span a, #btncercar { width: 28px; }
+.listIcones.right span a, .icolang a, #boxcookie a { border-radius: 16px; }
 .listIcones.right span a { display: block; } 
 .right, .autor { float: right;}
 
@@ -176,19 +171,15 @@ nav ul li a:hover {
 
 .logoheader, .btnshdmenu, .imgxmovil, .hide { display: none; }
 
-footer { width: 100%; }
+footer { width: 100%; position: absolute; bottom: 0; }
 header, footer { height: auto; }
 footer .listIcones img { height: 38px; }
-footer { position: absolute; }
+footer p .sepv, nav ul li a img { margin: 0px 25px 0px 0px; }
+footer .time { bottom: 10px; right: 25px; }
+footer span, .botoApp { font: 0.9em/1.4 Helvetica, Arial, Sans-serif; }
+a span .vertical, #formularimg, #formularimg fieldset, .llgProg { width: 150px; }
 nav, footer { box-sizing: border-box; z-index: 204; }
 header, nav, section, footer { margin: 0px auto; } 
 
-footer p .sepv, nav ul li a img { margin: 0px 25px 0px 0px; }
-
-footer .time { bottom: 10px; right: 25px; }
-
-footer span, .botoApp { font: 0.9em/1.4 Helvetica, Arial, Sans-serif; }
-a span .vertical, #formularimg, #formularimg fieldset, .llgProg { width: 150px; }
-
-.icogal, .llgProg, .branca span { margin-right: 6px; }
+.icogal, .llgProg { margin-right: 6px; }
 section, footer { padding: 24px 60px; }

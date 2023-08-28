@@ -42,11 +42,11 @@ nav ul li.btngaleria { padding: 14px 0px; }
 }
 
 #btncercar, #btncercar2, .cleartext.show { 
-    background-image: url(../_img/icones-Social-Media-23071701.png);
+    background-image: url(../_img/icones-Social-Media-23082501.svg);
     background-repeat: no-repeat;
 }
 
-#btncercar.mostra, .escriure, #btncercar2 { background-position: -56px -93px; } /* -28px */
+#btncercar.mostra, .escribir, #btncercar2 { background-position: -56px -93px; } /* -28px */
 #btncercar.amaga { background-position: -84px -93px; } /* -28px */
 #btncercar, #btncercar2 { cursor: pointer; }
 
@@ -86,9 +86,7 @@ nav ul li.btngaleria { padding: 14px 0px; }
 }
 /*	FIN LLISTA TERMS CERCA	*/
 
-
-
-/* DESPLGABLE CERCADOR */
+/* DESPLGABLE BUSCADROR */
 /* Cal copiar-los a nsuarez.com */
 form#cercartext2 { margin-bottom: 0px; }
 #boxcercadp { 
@@ -104,28 +102,24 @@ form#cercartext2 { margin-bottom: 0px; }
     border: solid thin lightslategrey;
 }
 #cercartext2 input { background-color: white; }
-/* Cal copiar-los a nsuarez.com */
 .btncerca { border-left: thin solid #b4b4d7; } 
-/* .btncerca, #cercador2d { height: 54px; } */
 #cercador2d { height: 28px; }
 #btncercar2 { 
-	background-image: url("../_img/icones-Social-Media-23052102.png"); 
+	background-image: url("../_img/icones-Social-Media-23082501.svg"); 
 	background-repeat: no-repeat;
 }
-#btncercar2 { background-position: -56px -28px; }
+#btncercar2 { background-position: -56px -93px; }
 #btncercar2 { overflow: hidden; }
 #btncercar2 {
     cursor: pointer; 
     width: 28px;
     height: 27px;
-    /* margin: 13px 4px 0px;  */
     display: inline-block;
 }
 #btncercar2 {
     overflow: hidden;
 }
 
-/* #cercador2d, #campcerca1, #campcerca2 { position: relative; } */
 #cercartext, #campcerca1, #campcerca2 { position: relative; }
 
 /* #cercartext2 input { margin: 8px 0px; } */
@@ -169,4 +163,4 @@ form#cercartext2 input {
 .listelems { padding: 6px 15px; } /**/
 /* .listelems span { padding-right: 6px; } */ /* margin-right: 8px; border-right: solid thin grey; */
 .listelems .fa { margin-left: 4px; color: darkred; }
-/* FI DESPLGABLE CERCADOR */
+/* FI DESPLGABLE BUSCADOR */
