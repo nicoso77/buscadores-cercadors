@@ -2,7 +2,7 @@
 
 Esta pequeño proyecto se ha creado con los lenguajes: PHP, Javascript y HTML5 y CSS3, además de utilizar varias tablas de Base de datos (MySQL) por lo que es necesario trabajar en un servidor local (localhost) que puede proporcionar el software XAMPP o MAMPP.
 
-**Muestra de dos buscadores**
+**Muestra de dos buscadores** <br>
 En este repositorio encontraras una pagina simple de PHP con una galería de imágenes y dos buscadores para localizar o seleccionar imágenes mediante dos métodos distintos:
 - El primer buscador permite seleccionar una o varias imágenes buscando la concidencía del texto introducido con las descripciónes (de una parte o toda) utilizadas para la etiqueta "alt" y que se encuentran en la tabla "imgs_buscador" de la base de datos.
 - El segundo buscador permite hacer la selección mediante uno o dos campos de texto de un formulario. Ambos inputs de texto generan un desplegable autocompletable a medida que se escribe. Se muestra  un desplegabe con un listado variable de opciones; estas se generan a partir de la busqueda del texto escrito en una de las tablas de la base de datso: 1er buscador -> disciplinas (disciplinas_buscador), 2º buscador -> herramientas (tools_buscador). Al hacer click en una de las opciones se actualiza la selección de imágenes en función de la opción elegida en cadda caso, aplicando un filtro. 
